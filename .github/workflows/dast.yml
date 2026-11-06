@@ -63,7 +63,7 @@ jobs:
               run: python ci/setup_dvwa.py
 
             - name: Run ZAP scan and quality gate
-              run: python ci/run_zap_scan.py
+              run: python ci/zap_scan.py
             
             - name: Upload scan reports
               if: always()
@@ -72,7 +72,7 @@ jobs:
                 name: zap-reports
                 path: |
                     zap-report.html
-                    zap-report.josn
+                    zap-alerts.json
             - name: Show ZAP log on failure
               if: failure()
               run: docker logs zap | tail -n 50 
